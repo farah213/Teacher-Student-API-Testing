@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "ea8dc5c1-8ec4-4fd3-89c7-d0d257973b35",
+		"name": "Teacher_Student_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21766656"
+	},
+	"item": [
+		{
+			"name": "get teacher information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var JsonData=pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check firstname\", function () {\r",
+							"    pm.expect(JsonData.data[1].students[0].firstName).to.eql(\"Dharani\");\r",
+							"});\r",
+							"pm.test(\"Check age\", function () {\r",
+							"    pm.expect(JsonData.data[1].age).to.eql(30);\r",
+							"});\r",
+							"pm.test(\"Check gender\", function () {\r",
+							"    pm.expect(JsonData.data[1].students[1].gender).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"Check lastname\", function () {\r",
+							"    pm.expect(JsonData.data[1].students[1].lastName).to.eql(\"kumari\");\r",
+							"});\r",
+							"pm.test(\"Check age\", function () {\r",
+							"    pm.expect(JsonData.data[2].age).to.eql(35);\r",
+							"});\r",
+							"pm.test(\"Check email\", function () {\r",
+							"    pm.expect(JsonData.data[2].email).to.eql(\"babu@xyz.com\");\r",
+							"});\r",
+							"pm.test(\"Check firstname\", function () {\r",
+							"    pm.expect(JsonData.data[2].students[0].firstName).to.eql(\"mariam\");\r",
+							"});\r",
+							"pm.test(\"Check gender\", function () {\r",
+							"    pm.expect(JsonData.data[2].students[0].gender).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"Check age\", function () {\r",
+							"    pm.expect(JsonData.data[2].students[1].age).to.eql(\"29\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/teachers/",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"teachers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new teacher",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"id\": 204,\r\n            \"firstName\": \"Kumar\",\r\n            \"lastName\": \"Babu\",\r\n            \"age\": 35,\r\n            \"email\": \"baule@xyz.com\",\r\n            \"class\": 8,\r\n            \"students\": [\r\n                {\r\n                    \"studentid\": 5,\r\n                    \"firstName\": \"mari\",\r\n                    \"lastName\": \"appan\",\r\n                    \"age\": 21,\r\n                    \"gender\": \"male\"\r\n                },\r\n                {\r\n                    \"studentid\": 6,\r\n                    \"firstName\": \"karan\",\r\n                    \"lastName\": \"Rajan\",\r\n                    \"age\": 23,\r\n                    \"gender\": \"male\"\r\n                }\r\n            ]\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/teachers/",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"teachers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update teacher info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var JsonData=pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"check message\", function () {\r",
+							"    pm.expect(JsonData.message).to.eql(\"Teacher updated Successfully\");\r",
+							"});\r",
+							"pm.test(\"Check first name\", function () {\r",
+							"    pm.expect(JsonData.data.firstName).to.eql(\"Atia\");\r",
+							"});\r",
+							"pm.test(\"check student id\", function () {\r",
+							"    pm.expect(JsonData.data.students[0].studentid).to.eql(\"6\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"id\": 202,\r\n            \"firstName\": \"Atia\",\r\n            \"lastName\": \"Farhana\",\r\n            \"age\": 35,\r\n            \"email\": \"babu@xyz.com\",\r\n            \"class\": 8,\r\n            \"students\": [\r\n                {\r\n                    \"studentid\": 5,\r\n                    \"firstName\": \"Jannat\",\r\n                    \"lastName\": \"mim\",\r\n                    \"age\": 21,\r\n                    \"gender\": \"Female\"\r\n                },\r\n                {\r\n                    \"studentid\": 6,\r\n                    \"firstName\": \"karan\",\r\n                    \"lastName\": \"Rajan\",\r\n                    \"age\": 23,\r\n                    \"gender\": \"male\"\r\n                }\r\n            ]\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/teachers/202",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"teachers",
+						"202"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete teacher info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/teachers/200",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"teachers",
+						"200"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
